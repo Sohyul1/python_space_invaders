@@ -12,7 +12,7 @@ pygame.display.set_caption("Pyhton Space Invaders")
 
 clock =  pygame.time.Clock()
 
-spaceship = Spaceship()
+spaceship = Spaceship(screen_width, screen_height)
 spaceship_group =  pygame.sprite.GroupSingle()
 spaceship_group.add(spaceship)
 
@@ -22,6 +22,9 @@ while True:
             pygame.quit()
             sys.exit()
         
+        # updating
+        spaceship_group.update()
+
         # Drawing 
         screen.fill(grey)
         spaceship_group.draw(screen)

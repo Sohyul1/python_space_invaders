@@ -1,6 +1,5 @@
 import pygame, sys
-from spaceship import Spaceship
-from obstacle import Obstacle
+from game import Game
 
 pygame.init()
 
@@ -14,27 +13,20 @@ pygame.display.set_caption("Pyhton Space Invaders")
 
 clock =  pygame.time.Clock()
 
-spaceship = Spaceship(screen_width, screen_height)
-spaceship_group =  pygame.sprite.GroupSingle()
-spaceship_group.add(spaceship)
+game = Game(screen_width, screen_height,)
 
-obstacle = Obstacle(100, 100)
-
-while True:
+while True: 
     for event in  pygame.event.get():
         if event.type == pygame.QUIT:
             pygame.quit()
             sys.exit()
-        
-        # updating
-        spaceship_group.update()
 
+        # Updating
+        game.spaceship_group.update()
         # Drawing 
         screen.fill(grey)
-        spaceship_group.draw(screen)
-        spaceship_group.sprite.laser_group.draw(screen)
-        obstacle.blocks_group.draw(screen)
-       
+        game.spaceship_group.draw()
+        game.spaceship_group.sprite.laser_group.draw(screen)
         pygame.display.update()
         clock.tick(60)
 

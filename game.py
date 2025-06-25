@@ -37,3 +37,20 @@ class Game:
 					alien_type = 1
 				alien = Alien(alien_type, x, y)
 				self.aliens_group.add(alien)
+				
+	def move_aliens(self):
+		self.aliens_group.update(self.aliens_direction)
+		alien_sprites = self.aliens_group.sprites()
+		for alien in alien_sprites:
+			if alien.rect.right >= self.screen_width:
+				self.aliens_direction = -1
+				self.alien_move_down(2)
+			elif alien.rect.left <= 0:
+				self.aliens_direction = 1
+				self.alien_move_down(2)
+		
+	def alien_move_down(self, distance):
+		if self.aliens_group:
+			for alien in self.aliens_group.sprites():
+				alien.rect.y += distance
+

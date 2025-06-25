@@ -23,7 +23,7 @@ class Game:
 		self.run = True
 		self.score = 0 
 		self.highscore = 0
-		self.load_highscore = 0
+		self.load_highscore
 
 	def create_obstacles(self):
 		obstacle_width = len(grid[0]) * 3

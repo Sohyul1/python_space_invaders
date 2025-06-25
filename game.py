@@ -44,17 +44,17 @@ class Game:
 					alien_type = 2
 				else:
 					alien_type = 1
-				alien = Alien(alien_type, x, y)
+				alien = Alien(alien_type, x + self.offset/2, y)
 				self.aliens_group.add(alien)
 				
 	def move_aliens(self):
 		self.aliens_group.update(self.aliens_direction)
 		alien_sprites = self.aliens_group.sprites()
 		for alien in alien_sprites:
-			if alien.rect.right >= self.screen_width:
+			if alien.rect.right >= self.screen_width + self.offset/2:
 				self.aliens_direction = -1
 				self.alien_move_down(2)
-			elif alien.rect.left <= 0:
+			elif alien.rect.left <= self.offset/2:
 				self.aliens_direction = 1
 				self.alien_move_down(2)
 		
@@ -70,7 +70,7 @@ class Game:
 			self.alien_lasers_group.add(laser_sprite)
 
 	def create_mysterys_ship(self):
-			self.mystery_ship_group.add(MysteryShip(self.screen_width))
+			self.mystery_ship_group.add(MysteryShip(self.screen_width, self.offset))
 
 	def check_for_collisions(self):
 		# Spaceship

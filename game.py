@@ -18,7 +18,8 @@ class Game:
 		self.aliens_direction = 1
 		self.alien_lasers_group = pygame.sprite.Group()
 		self.mystery_ship_group = pygame.sprite.GroupSingle()
-		
+		self.lives = 3
+		self.run = True
 
 	def create_obstacles(self):
 		obstacle_width = len(grid[0]) * 3
@@ -71,8 +72,8 @@ class Game:
 
 	def check_for_collisions(self):
 		# Spaceship
-		if self.spaceship_group.sprite.lasers_group:
-			for laser_sprite in self.spaceship_group.sprite.lasers_group:
+		if self.spaceship_group.sprite.laser_group:
+			for laser_sprite in self.spaceship_group.sprite.laser_group:
 				if pygame.sprite.spritecollide(laser_sprite, self.aliens_group, True):
 					laser_sprite.kill()
 
@@ -88,7 +89,10 @@ class Game:
 			for laser_sprite in self.alien_lasers_group:
 				if pygame.sprite.spritecollide(laser_sprite, self.spaceship_group, False):
 					laser_sprite.kill()
-					print("Spaceship hit!")
+					self.lives -= 1
+					if self.lives == 0:
+						self.game_over()
+					
 				for obstacle in self.obstacles:
 					if pygame.sprite.spritecollide(laser_sprite, obstacle.blocks_group, True):
 						laser_sprite.kill()
@@ -101,7 +105,13 @@ class Game:
 				if pygame.sprite.spritecollide(alien, self.spaceship_group, False):
 					self.game_over()
 					
+	def game_over(self):
+		print("Game Over")
+		self.run = False
 
+	def reset(self):
+		self.run = True
+		self.lives = 3
 		
 
 

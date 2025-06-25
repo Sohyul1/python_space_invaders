@@ -1,4 +1,4 @@
-import pygame, sys
+import pygame, sys, random
 from game import Game
 
 pygame.init()
@@ -18,17 +18,28 @@ game = Game(screen_width, screen_height,)
 shoot_laser = pygame.USEREVENT
 pygame.time.set_timer(shoot_laser, 300)
 
+mystery_ship = pygame.USEREVENT
+pygame.time.set_timer(mystery_ship, random.randint(4000, 8000))
+
 while True: 
     for event in  pygame.event.get():
         if event.type == pygame.QUIT:
             pygame.quit()
             sys.exit()
+        
         if event.type == shoot_laser:
             game.alien_shoot_laser()
+        
+        if  event.type == mystery_ship:
+            game.create_mysterys_ship()
+            pygame.time.set_timer(mystery_ship, random.randint(4000, 8000))
+
+
         # Updating
         game.spaceship_group.update()
         game.move_aliens()
         game.alien_lasers_group.update()
+        game.mystery_ship_group.update()
 
         # Drawing 
         screen.fill(grey)
@@ -38,7 +49,7 @@ while True:
             obstacle.blocks_group.draw(screen)
         game.aliens_group.draw(screen)
         game.alien_lasers_group.draw(screen)
-        
+        game.mystery_ship_group.draw(screen)
         pygame.display.update()
         clock.tick(60)
 

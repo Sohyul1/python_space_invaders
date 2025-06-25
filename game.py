@@ -25,7 +25,7 @@ class Game:
 
 	def create_obstacles(self):
 		obstacle_width = len(grid[0]) * 3
-		gap = (self.screen_width - (4 * obstacle_width))/5
+		gap = (self.screen_width + self.offset - (4 * obstacle_width))/5
 		obstacles = []
 		for i in range(4):
 			offset_x = (i + 1) * gap + i * obstacle_width

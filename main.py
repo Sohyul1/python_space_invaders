@@ -15,10 +15,10 @@ clock =  pygame.time.Clock()
 
 game = Game(screen_width, screen_height,)
 
-shoot_laser = pygame.USEREVENT
-pygame.time.set_timer(shoot_laser, 300)
+shoot_laser = pygame.USEREVENT + 1
+pygame.time.set_timer(shoot_laser, 600)
 
-mystery_ship = pygame.USEREVENT
+mystery_ship = pygame.USEREVENT + 2
 pygame.time.set_timer(mystery_ship, random.randint(4000, 8000))
 
 while True: 
@@ -27,7 +27,8 @@ while True:
             pygame.quit()
             sys.exit()
         
-        if event.type == shoot_laser and game.run:  
+        if event.type == shoot_laser and game.run:      
+            for i in range(3):
                 game.alien_shoot_laser()
         
         if  event.type == mystery_ship and game.run:

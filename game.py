@@ -112,8 +112,12 @@ class Game:
 	def reset(self):
 		self.run = True
 		self.lives = 3
-		
-
+		self.spaceship_group.sprite.reset()
+		self.aliens_group.empty()
+		self.alien_lasers_group.empty()
+		self.create_aliens()
+		self.mystery_ship_group.empty()
+		self.obstacles = self.create_obstacles
 
 
 

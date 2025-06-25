@@ -14,14 +14,14 @@ font = pygame.font.Font("Font/monogram.ttf", 40)
 level_surface = font.render("LEVEL 01", False, yellow)
 game_over_surface = font.render("GAME OVER", False, yellow)
 score_text = font.render("SCORE", False, yellow)
-
+hig_score_text = font.render("HIGH-SCORE", False, yellow)
 screen  = pygame.display.set_mode((screen_width, screen_height + (2 * off_set)))
 pygame.display.set_caption("Pyhton Space Invaders")
 
 clock =  pygame.time.Clock()
 
 game = Game(screen_width, screen_height, off_set)
-
+game.load_highscore()
 shoot_laser = pygame.USEREVENT + 1
 pygame.time.set_timer(shoot_laser, 600)
 
@@ -69,8 +69,13 @@ while True:
         screen.blit(game.spaceship_group.sprite.image, (x, 745))
         x += 50
     screen.blit(score_text, (50, 15, 50, 50))
-    score_surface = font.render(str(game.score), False, yellow)
+    formatted_score = str(game.score).zfill(5)
+    score_surface = font.render(formatted_score, False, yellow)
     screen.blit(score_surface, (50, 40, 50 ,50))
+    screen.blit(hig_score_text, (600, 15, 50, 50))
+    formatted_high_score = str(game.highscore).zfill(5)
+    high_score_surface = font.render(formatted_high_score, False, yellow)
+    screen.blit(high_score_surface, (675, 40, 50, 50))
 
     game.spaceship_group.draw(screen)
     game.spaceship_group.sprite.laser_group.draw(screen)

@@ -4,6 +4,7 @@ from laser import  Laser
 class Spaceship(pygame.sprite.Sprite):
 	def __init__(self, screen_width, screen_heigth, offset):
 		super().__init__()
+		self.offset = offset
 		self.screen_width = screen_width
 		self.screen_heigth = screen_heigth
 		self.image = pygame.image.load("Graphics/spaceship.png")
@@ -13,7 +14,7 @@ class Spaceship(pygame.sprite.Sprite):
 		self.laser_ready = True
 		self.laser_time = 0
 		self.laser_delay = 300	
-		self.offset = offset
+		
 	
 	def get_user_input(self):
 		keys = pygame.key.get_pressed()

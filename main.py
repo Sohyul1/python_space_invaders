@@ -27,21 +27,23 @@ while True:
             pygame.quit()
             sys.exit()
         
-        if event.type == shoot_laser and game.run:
-            game.alien_shoot_laser()
+        if event.type == shoot_laser and game.run:  
+                game.alien_shoot_laser()
         
         if  event.type == mystery_ship and game.run:
             game.create_mysterys_ship()
             pygame.time.set_timer(mystery_ship, random.randint(4000, 8000))
 
-
+        keys = pygame.key.get_pressed()
+        if keys[pygame.K_SPACE] and game.run == False:
+            game.reset()
         # Updating
-        if game.run:
-            game.spaceship_group.update()
-            game.move_aliens()
-            game.alien_lasers_group.update()
-            game.mystery_ship_group.update()
-            game.check_for_collisions()
+    if game.run:
+        game.spaceship_group.update()
+        game.move_aliens()
+        game.alien_lasers_group.update()
+        game.mystery_ship_group.update()
+        game.check_for_collisions()
 
         # Drawing 
         screen.fill(grey)

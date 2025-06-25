@@ -7,11 +7,11 @@ from laser import Laser
 from alien import MysteryShip
 
 class Game:
-	def __init__(self, screen_width, screen_height):
+	def __init__(self, screen_width, screen_height, offset):
 		self.screen_width = screen_width
 		self.screen_height = screen_height
 		self.spaceship_group = pygame.sprite.GroupSingle()
-		self.spaceship_group.add(Spaceship(self.screen_width, self.screen_height))
+		self.spaceship_group.add(Spaceship(self.screen_width, self.screen_height, self.offset))
 		self.obstacles = self.create_obstacles()
 		self.aliens_group = pygame.sprite.Group()
 		self.create_aliens() 
@@ -20,6 +20,7 @@ class Game:
 		self.mystery_ship_group = pygame.sprite.GroupSingle()
 		self.lives = 3
 		self.run = True
+		self.offset = offset
 
 	def create_obstacles(self):
 		obstacle_width = len(grid[0]) * 3

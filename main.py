@@ -51,6 +51,7 @@ while True:
         # Drawing 
     screen.fill(grey)
     pygame.draw.rect(screen, yellow, (10, 10, 780,780), 2, 0, 60, 60, 60, 60)
+    pygame.draw.line(screen, yellow, (25, 730), (775, 730), 3)
     game.spaceship_group.draw(screen)
     game.spaceship_group.sprite.laser_group.draw(screen)
     for obstacle in game.obstacles:

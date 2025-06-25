@@ -23,10 +23,14 @@ while True:
 
         # Updating
         game.spaceship_group.update()
+        
         # Drawing 
         screen.fill(grey)
-        game.spaceship_group.draw()
+        game.spaceship_group.draw(screen)
         game.spaceship_group.sprite.laser_group.draw(screen)
+        for obstacle in game.obstacles:
+            obstacle.blocks_group.draw(screen)
+        
         pygame.display.update()
         clock.tick(60)
 

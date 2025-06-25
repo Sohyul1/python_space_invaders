@@ -5,10 +5,12 @@ pygame.init()
 
 screen_width = 800
 screen_height = 700
+off_set = 50
 
 grey = (29,29,27)
+yellow = (243, 216, 63)
 
-screen  = pygame.display.set_mode((screen_width, screen_height))
+screen  = pygame.display.set_mode((screen_width, screen_height + (2 * off_set)))
 pygame.display.set_caption("Pyhton Space Invaders")
 
 clock =  pygame.time.Clock()
@@ -47,14 +49,15 @@ while True:
         game.check_for_collisions()
 
         # Drawing 
-        screen.fill(grey)
-        game.spaceship_group.draw(screen)
-        game.spaceship_group.sprite.laser_group.draw(screen)
-        for obstacle in game.obstacles:
-            obstacle.blocks_group.draw(screen)
-        game.aliens_group.draw(screen)
-        game.alien_lasers_group.draw(screen)
-        game.mystery_ship_group.draw(screen)
-        pygame.display.update()
-        clock.tick(60)
+    screen.fill(grey)
+    pygame.draw.rect(screen, yellow, (10, 10, 780,780), 2, 0, 60, 60, 60, 60)
+    game.spaceship_group.draw(screen)
+    game.spaceship_group.sprite.laser_group.draw(screen)
+    for obstacle in game.obstacles:
+        obstacle.blocks_group.draw(screen)
+    game.aliens_group.draw(screen)
+    game.alien_lasers_group.draw(screen)
+    game.mystery_ship_group.draw(screen)
+    pygame.display.update()
+    clock.tick(60)
 

@@ -8,6 +8,7 @@ from alien import MysteryShip
 
 class Game:
 	def __init__(self, screen_width, screen_height, offset):
+		self.offset = offset
 		self.screen_width = screen_width
 		self.screen_height = screen_height
 		self.spaceship_group = pygame.sprite.GroupSingle()
@@ -20,7 +21,7 @@ class Game:
 		self.mystery_ship_group = pygame.sprite.GroupSingle()
 		self.lives = 3
 		self.run = True
-		self.offset = offset
+		
 
 	def create_obstacles(self):
 		obstacle_width = len(grid[0]) * 3
